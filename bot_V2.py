@@ -28,6 +28,7 @@ def add_contact(args, contacts):
     contacts[name] = phone
     return "Contact added."
 
+
 @input_error
 def change_contact(args, contacts):
     name, phone = args
@@ -50,7 +51,13 @@ def main():
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
-        command, args = parse_input(user_input)
+        result = parse_input(user_input)
+
+        if isinstance(result, str):
+            print(result)
+            continue
+
+        command, args = result
 
         if command in ["close", "exit"]:
             print("Good bye!")
